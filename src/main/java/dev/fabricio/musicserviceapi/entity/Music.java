@@ -1,13 +1,16 @@
 package dev.fabricio.musicserviceapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "music")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Music {
 
     @Id
@@ -20,7 +23,8 @@ public class Music {
     @Column(name = "duration_seconds", nullable = false)
     private int durationInSeconds;
 
-    @ManyToOne
+    @JsonIgnore  // ← Ignore a referência de volta para album
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "album_id")
     private Album album;
 
