@@ -7,6 +7,7 @@ import lombok.Builder;
 public record MusicResponse(Long id,
                             String title,
                             Integer durationInSeconds,
-                            AlbumResponse album,
+                            String album,
+                            String artist,
                             String genre) {
 }

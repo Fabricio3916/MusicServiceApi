@@ -14,15 +14,12 @@ public class ArtistService {
 
 
     private final ArtistRepository repository;
-    private final AlbumService albumService;
 
-    public ArtistService(ArtistRepository artistRepository, AlbumService albumService) {
+    public ArtistService(ArtistRepository artistRepository) {
         this.repository = artistRepository;
-        this.albumService = albumService;
     }
 
     public Artist save(Artist artist) {
-        artist.setAlbums(findAlbum(artist.getAlbums()));
         return repository.save(artist);
     }
 
@@ -42,10 +39,6 @@ public class ArtistService {
         return repository.save(artist);
     }
 
-    private List<Album> findAlbum (List<Album> albums){
-        List<Album> albumList = new ArrayList<>();
-        albums.forEach(album -> albumService.findById(album.getId()).ifPresent(albumList::add));
-        return albumList;
-    }
+
 
 }

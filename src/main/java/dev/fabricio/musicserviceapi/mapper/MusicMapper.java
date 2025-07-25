@@ -12,7 +12,9 @@ public class MusicMapper {
 
     public static Music toMusic(MusicRequest musicRequest) {
 
-        Album album = Album.builder().id(musicRequest.album()).build();
+        Album album = Album.builder()
+                .id(musicRequest.album())
+                .build();
 
         return Music.builder()
                 .title(musicRequest.title())
@@ -24,13 +26,15 @@ public class MusicMapper {
 
     public static MusicResponse toMusicResponse(Music music) {
 
-        AlbumResponse albumResponse = AlbumMapper.toResponse(music.getAlbum());
+        String artist = music.getAlbum().getArtist().getName();
+        String album = music.getAlbum().getTitle();
 
         return MusicResponse.builder()
                 .id(music.getId())
                 .title(music.getTitle())
                 .durationInSeconds(music.getDurationInSeconds())
-                .album(albumResponse)
+                .album(album)
+                .artist(artist)
                 .genre(music.getGenre())
                 .build();
     }

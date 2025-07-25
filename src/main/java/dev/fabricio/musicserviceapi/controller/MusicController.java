@@ -33,7 +33,10 @@ public class MusicController {
     @PostMapping
     public ResponseEntity<MusicResponse> saveMusic(@RequestBody MusicRequest request) {
         Music newMusic = MusicMapper.toMusic(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(MusicMapper.toMusicResponse(musicService.save(newMusic)));
+        newMusic = musicService.save(newMusic);
+        Music completeMusic = musicService.getMusicById(newMusic.getId());
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(MusicMapper.toMusicResponse(completeMusic));
     }
 
     @GetMapping("/{id}")

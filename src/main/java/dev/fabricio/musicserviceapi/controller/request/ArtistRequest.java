@@ -2,6 +2,6 @@ package dev.fabricio.musicserviceapi.controller.request;
 
 import java.util.List;
 
-public record ArtistRequest(String name,
-                            List<Long> albums) {
+public record ArtistRequest(String name
+) {
 }

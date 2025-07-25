@@ -21,8 +21,7 @@ public class Artist {
 
     private String name;
 
-    @JsonIgnore  // ← ADICIONE ESTA LINHA
-    @OneToMany(mappedBy = "artist", fetch = FetchType.LAZY)  // ← E LAZY também
+    @OneToMany(mappedBy = "artist")
     private List<Album> albums;
 
 }

@@ -23,8 +23,7 @@ public class Music {
     @Column(name = "duration_seconds", nullable = false)
     private int durationInSeconds;
 
-    @JsonIgnore  // ← Ignore a referência de volta para album
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;
 
